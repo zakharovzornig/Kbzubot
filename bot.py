@@ -11,7 +11,7 @@ def parse_input(text):
         for key in data:
             if key in line:
                 try:
-                    value = float(''.join(filter(lambda x: x.isdigit() or x=='.', line)))
+                    value = float(''.join(filter(lambda x: x.isdigit() or x == '.', line)))
                     data[key] = value
                 except:
                     pass
@@ -22,14 +22,10 @@ def handle_message(message):
     data = parse_input(message.text)
     weight_ratio = data["вес"] / 100
     response = (
-        f"На {data['вес']} г:
-"
-        f"Калории: {round(data['ккал'] * weight_ratio)}
-"
-        f"Белки: {round(data['белки'] * weight_ratio, 1)} г
-"
-        f"Жиры: {round(data['жиры'] * weight_ratio, 1)} г
-"
+        f"На {data['вес']} г:\n"
+        f"Калории: {round(data['ккал'] * weight_ratio)}\n"
+        f"Белки: {round(data['белки'] * weight_ratio, 1)} г\n"
+        f"Жиры: {round(data['жиры'] * weight_ratio, 1)} г\n"
         f"Углеводы: {round(data['углеводы'] * weight_ratio, 1)} г"
     )
     bot.reply_to(message, response)
